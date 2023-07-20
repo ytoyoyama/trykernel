@@ -32,7 +32,7 @@ cmake ..
 make -j`nproc`
 ```
 
-ビルドに成功すれば、 `part_5/build/try-kernel` にELF形式のバイナリが出力されるので、pico-toolなどで書き込む。
+ビルドに成功すれば、 `build/try-kernel` にELF形式のバイナリが出力されるので、pico-toolなどで書き込む。
 
 ```
 pico-tool load -x -t elf try-kernel
