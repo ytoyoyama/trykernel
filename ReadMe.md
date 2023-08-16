@@ -14,9 +14,9 @@ Try Kernelは、CQ出版(株) Interface 2023年7月号の特集「ゼロから�
 - Eclipse IDE for Embedded C/C++ Developers
 - GNU Arm Embedded GCC
 
-## Linux環境でのビルド
+## Linux環境でのビルド (CMake)
 
-現在のところ、 `part_5` のソースコードのみCMakeでのビルドプロジェクトが用意されており、CMakeおよびGCCでのLinux環境上でのビルドが可能である。
+[build_cmakeブランチ](https://github.com/ytoyoyama/trykernel/tree/build_cmake)で、CMakeおよびGCCでのLinux環境上でのビルドが、以下の手順で可能です。
 
 ビルドに必要なパッケージを以下のコマンドでインストールする。
 
