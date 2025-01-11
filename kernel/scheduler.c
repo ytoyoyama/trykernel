@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      スケジューラ
+ *** Try Kernel v2  スケジューラ
 */
 #include <trykernel.h>
 #include <knldef.h>

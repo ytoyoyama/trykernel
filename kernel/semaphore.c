@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      セマフォ
+ *** Try Kernel v2  セマフォ
 */
 
 #include <trykernel.h>

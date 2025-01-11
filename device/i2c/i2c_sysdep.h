@@ -1,4 +1,8 @@
-﻿#ifndef	DEV_I2C_RP2040_H
+﻿/* 
+ *** Try Kernel v2  I2C デバイスドライバ
+*/
+
+#ifndef	DEV_I2C_RP2040_H
 #define	DEV_I2C_RP2040_H
 
 #define	DEV_I2C_UNITNM      (2)	/* Number of devive units */

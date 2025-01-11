@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      タスク管理
+ *** Try Kernel v2  タスク管理
 */
 #include <trykernel.h>
 #include <knldef.h>

@@ -1,8 +1,7 @@
 ﻿#ifndef SYSDEF_H
 #define SYSDEF_H
 /*
- *** Try Kernel
- *          システム（ハードウェア）関連共通定義
+ *** Try Kernel v2 システム（ハードウェア）関連共通定義
  */
 
 /* メモリ関連 */
@@ -61,10 +60,19 @@
 
 /* GPIO */
 #define IO_BANK0_BASE           0x40014000
-#define	GPIO_CTRL(n)            (IO_BANK0_BASE+0x04+(n*8))
 
+#define	GPIO_CTRL(n)            (IO_BANK0_BASE+0x04+(n*8))
 #define	GPIO_CTRL_FUNCSEL_I2C   3
 #define	GPIO_CTRL_FUNCSEL_NULL  31
+
+#define INTR(n)             	(IO_BANK0_BASE+0x0F0+(n*4))
+
+#define PROC0_INTE(n)       	(IO_BANK0_BASE+0x100+((n>>3)*4))
+#define INTE_MODE_EDGE_HIGH     0x08
+#define INTE_MODE_EDGE_LOW      0x04
+#define INTE_MODE_LEVEL_HIGH    0x02
+#define INTE_MODE_LEVEL_LOW     0x01
+#define INTE_MODE_NON           0x00
 
 #define PADS_BANK0_BASE         0x4001c000
 #define	GPIO(n)                 (PADS_BANK0_BASE+0x4+(n*4))
@@ -135,6 +143,39 @@
 #define GPIO_OE_CLR             (SIO_BASE+0x28)
 #define GPIO_OE_XOR             (SIO_BASE+0x2C)
 
+/* PWM レジスタ  */
+#define	PWM_BASE                0x40050000
+
+#define PWM_CHx_CSR             (0x00)
+#define PWM_CHx_DIV             (0x04)
+#define PWM_CHx_CTR             (0x08)
+#define PWM_CHx_CC              (0x0C)
+#define PWM_CHx_TOP             (0x10)
+
+#define PWM_CH_CSR(n)           (PWM_BASE + PWM_CHx_CSR + (n*0x14))
+#define PWM_CH_DIV(n)           (PWM_BASE + PWM_CHx_DIV + (n*0x14))
+#define PWM_CH_CTR(n)           (PWM_BASE + PWM_CHx_CTR + (n*0x14))
+#define PWM_CH_CC(n)            (PWM_BASE + PWM_CHx_CC  + (n*0x14))
+#define PWM_CH_TOP(n)           (PWM_BASE + PWM_CHx_TOP + (n*0x14))
+
+#define PWM_CH_CSR_EN           (1<<0)
+
+/* Timer レジスタ */
+#define TIMER_BASE              (0x40054000)
+#define TIMER_TIMEHR            (TIMER_BASE + 0x08)
+#define TIMER_TIMELR            (TIMER_BASE + 0x0C)
+
+/* Watchdog timer レジスタ */
+#define	WDT_BASE                0x40058000
+#define WDT_CTRL                (WDT_BASE+0x00)
+#define WDT_LOAD                (WDT_BASE+0x04)
+#define WDT_REASON              (WDT_BASE+0x80)
+#define WDT_SCRATCH(n)          (WDT_BASE+0x0C+(n<<2))
+#define WDT_TICK                (WDT_BASE+0x2C)
+
+#define WDT_TICK_CYCLES         (0x000000FF)
+#define WDT_TICK_ENABLE         (1<<9)
+
 /* SysTick レジスタ */
 #define SYST_CSR                (0xE000E010)
 #define SYST_RVR                (0xE000E014)
@@ -160,12 +201,52 @@
 #define	KHz                     (1000)
 #define	MHz                     (KHz*1000)
 
-/* NVIC レジスタ */
+/* 例外・割込み関連 */
+/* SCB レジスタ */
+#define SCB_VTOR                (0xE000ED08)
 #define SCB_SHPR3               (0xE000ED20)
 
 #define	INTLEVEL_0              (0x00)
 #define	INTLEVEL_1              (0x40)
 #define	INTLEVEL_2              (0x80)
 #define	INTLEVEL_3              (0xC0)
+
+/* NVIC レジスタ */
+#define NVIC_ISER(x)            (0xE000E100 + (((x) / 32) << 2))
+#define NVIC_ICER(x)            (0xE000E180 + (((x) / 32) << 2))
+#define NVIC_ISPR(x)            (0xE000E200 + (((x) / 32) << 2))
+#define NVIC_ICPR(x)            (0xE000E280 + (((x) / 32) << 2))
+#define NVIC_IPR(x)             (0xE000E400 + (x))
+
+#define	N_SYSVEC                16	/* 例外ベクタ数 */
+#define N_INTVEC                32	/* 割込みベクタ数 */
+#define INTPRI_BITWIDTH	        2
+
+#define IRQ_TIMER0              0
+#define IRQ_TIMER1              1
+#define IRQ_TIMER2              2
+#define IRQ_TIMER3              3
+#define IRQ_PWM                 4
+#define IRQ_USBCTRL             5
+#define IRQ_XIP                 6
+#define IRQ_PIO00               7
+#define IRQ_PIO01               8
+#define IRQ_PIO10               9
+#define IRQ_PIO11               10
+#define IRQ_DMA0                11
+#define IRQ_DMA1                12
+#define IRQ_BANK0               13
+#define IRQ_QSPI                14
+#define IRQ_SIOPR0              15
+#define IRQ_SIOPR1              16
+#define IRQ_CLOCKS              17
+#define IRQ_SPI0                18
+#define IRQ_SPI1                19
+#define IRQ_UART0               20
+#define IRQ_UART1               21
+#define IRQ_ADC                 22
+#define IRQ_I2C0                23
+#define IRQ_I2C1                24
+#define IRQ_RTC                 25
 
 #endif  /* SYSDEF_H */

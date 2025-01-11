@@ -1,8 +1,7 @@
 ﻿#ifndef ERROR_H
 #define ERROR_H
 /*
- * Try Kernel
- *      エラーコード定義
+ *** Try Kernel v2  エラーコード定義
  */
 
 #define E_OK        (0)     // 正常終了

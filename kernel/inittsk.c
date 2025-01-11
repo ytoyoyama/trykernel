@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      初期タスク
+ *** Try Kernel v2  初期タスク
 */
 #include <trykernel.h>
 #include <knldef.h>

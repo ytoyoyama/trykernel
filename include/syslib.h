@@ -1,8 +1,7 @@
 ﻿#ifndef SYSLIB_H
 #define SYSLIB_H
 /* 
- *** Try Kernel
- *      共通ライブラリ関数定義
+ *** Try Kernel v2  共通ライブラリ関数定義
  */
 
 /* 32bitレジスタからの入力 */
@@ -56,6 +55,11 @@ static inline UW get_primask( void )
 
 /* 割込み許可マクロ */
 #define	EI(intsts)	(set_primask(intsts))
+
+/* 割込みコントローラ制御 */
+extern void EnableInt( UINT intno, INT level );
+extern void DisableInt( UINT intno );
+extern void ClearInt( UINT intno );
 
 /* デバッグ用シリアル通信 */
 void tm_com_init(void);

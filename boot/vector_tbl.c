@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      例外ベクターテーブル
+ *** Try Kernel v2  例外ベクタ・テーブル
 */
 
 #include <typedef.h>
@@ -14,7 +13,7 @@ void Default_Handler(void)
     while(1);
 }
 
-/* 例外ベクターテーブル */
+/* 例外ベクタ・テーブル */
 void (* const vector_tbl[])() __attribute__((section(".vector"))) = {
     (void(*)()) (INITIAL_SP),   // 0: Top of Stack
     Reset_Handler,              // 1: Reset

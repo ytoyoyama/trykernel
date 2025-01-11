@@ -1,8 +1,7 @@
 ﻿#ifndef TYPEDEF_H
 #define TYPEDEF_H
 /* 
- *** Try Kernel
- *      データ型定義
+ *** Try Kernel v2	データ型定義
 */
 
 #include <stdint.h>

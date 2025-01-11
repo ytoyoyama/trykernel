@@ -4,3 +4,4 @@
 #include "sysdef.h"
 #include "syslib.h"
 #include "apidef.h"
+#include "gpio.h"

@@ -1,4 +1,8 @@
-﻿#ifndef	DEV_ADC_RP2040_H
+﻿/* 
+ *** Try Kernel v2  A/DC デバイスドライバ
+*/
+
+#ifndef	DEV_ADC_RP2040_H
 #define	DEV_ADC_RP2040_H
 
 /* NUmber of A/DC chanels */
@@ -35,10 +39,8 @@
 #define ADC_FCS_LEVEL       (0x000F0000)
 #define ADC_FCS_EN          1
 
-/* A/DC 割込み番号 */
-#define	INTNO_ADC           22
-
-/* クロック設定値 */
-#define	ADC_DIV_INI         0
+#define	INTNO_ADC           22		// A/DC 割込み番号
+#define	INTPRI_ADC			1		// A/DC 割り込み優先度
+#define	ADC_DIV_INI         0		//クロック設定値
 
 #endif	/* DEV_ADC_RP2040_H */

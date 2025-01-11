@@ -1,4 +1,8 @@
-﻿#include <trykernel.h>
+﻿/* 
+ *** Try Kernel v2  デバイスドライバ管理
+*/
+
+#include <trykernel.h>
 #include "device.h"
 #include "../i2c/dev_i2c.h"
 #include "../adc/dev_adc.h"

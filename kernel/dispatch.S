@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      ディスパッチャ
+ *** Try Kernel v2  ディスパッチャ
 */
     .align 2
     .thumb_func
