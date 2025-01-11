@@ -9,9 +9,6 @@ set(CMAKE_CXX_STANDARD 17) # C++言語の規格=C++17
 
 # ソースコードの追加
 add_executable(try-kernel
-    application/gsns.c
-    application/lcd.c
-    application/lsns.c
     application/usermain.c
     boot/boot2.c
     boot/reset_hdr.c
@@ -22,7 +19,9 @@ add_executable(try-kernel
     device/i2c/i2c_rp2040.c
     kernel/context.c
     kernel/eventflag.c
+    kernel/gpio.c
     kernel/inittsk.c
+    kernel/messagebuf.c
     kernel/scheduler.c
     kernel/semaphore.c
     kernel/syslib.c
