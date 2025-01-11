@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      イベントフラグ
+ *** Try Kernel v2  イベントフラグ
 */
 
 #include <trykernel.h>

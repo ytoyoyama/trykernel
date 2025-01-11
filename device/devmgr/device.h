@@ -1,4 +1,8 @@
-﻿#ifndef DEVICE_H
+﻿/* 
+ *** Try Kernel v2  デバイスドライバ管理
+*/
+
+#ifndef DEVICE_H
 #define DEVICE_H
 
 #include "typedef.h"

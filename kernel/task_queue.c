@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      タスクの待ち行列操作関数
+ *** Try Kernel v2  タスクの待ち行列操作関数
 */
 #include <trykernel.h>
 #include <knldef.h>

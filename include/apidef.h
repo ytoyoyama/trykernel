@@ -1,8 +1,7 @@
 ﻿#ifndef APIDEF_H
 #define APIDEF_H
 /* 
- *** Try Kernel
- *      API定義 
+ *** Try Kernel v2  API定義 
 */
 
 /* タイムアウト時間 */
@@ -73,6 +72,28 @@ typedef struct t_csem {
 ID tk_cre_sem( const T_CSEM *pk_csem );
 ER tk_sig_sem( ID semid, INT cnt );
 ER tk_wai_sem( ID semid, INT cnt, TMO tmout );
+
+/* メッセージバッファ生成情報 */
+typedef struct t_cmbf {
+    ATR     mbfatr;         // メッセージバッファ属性
+    SZ      bufsz;          // メッセージバッファのサイズ
+    INT     maxmsz;         // メッセージの最大サイズ
+    void    *bufptr;        // メッセージバッファ領域のアドレス
+} T_CMBF;
+
+/* メッセージバッファ API */
+ID tk_cre_mbf( const T_CMBF *pk_cmbf);
+ER tk_snd_mbf( ID mbfid, const void *msg, INT msgsz, TMO tmout);
+INT tk_rcv_mbf( ID mbfid, void *msg, TMO tmout);
+
+/* 割込みハンドラ定義情報 */
+typedef struct t_dint {
+    ATR	intatr;     // 割込みハンドラ属性
+    FP	inthdr;     // 割込みハンドラ・アドレス
+} T_DINT;
+
+/* 割込み管理API */
+ER tk_def_int( UINT intno, const T_DINT *pk_dint );
 
 /* デバイス管理API */
 ID tk_opn_dev( const UB *devnm, UINT omode);

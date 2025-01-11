@@ -1,4 +1,8 @@
-﻿#ifndef DEV_ADC_H
+﻿/* 
+ *** Try Kernel v2  A/DC デバイスドライバ
+*/
+
+#ifndef DEV_ADC_H
 #define DEV_ADC_H
 
 extern ER dev_adc_open(UW unit, UINT option);

@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      リセットハンドラ
+ *** Try Kernel v2  リセットハンドラ
 */
 
 #include <typedef.h>
@@ -14,6 +13,24 @@ extern const void *__data_start;
 extern const void *__data_end;
 extern const void *__bss_start;
 extern const void *__bss_end;
+
+/*** 例外・割込みの初期化 ***/
+static void init_int(void)
+{
+	UW      *src, *dst;
+    UINT    i;
+
+    /* 例外ベクタ・テーブルの移動 */
+	src = (UW*)vector_tbl;
+	dst = (UW*)knl_vec_tbl;
+
+	for(i=0; i < ((N_SYSVEC + N_INTVEC)); i++) {
+		*dst++ = *src++;
+	}
+	
+	*(_UW*)SCB_VTOR = (UW)knl_vec_tbl;      	            // 例外ベクタ・テーブルの設定
+    out_w(SCB_SHPR3, (INTLEVEL_0<<24)|(INTLEVEL_3<<16));    // PendSVC例外とSysTick例外の優先度設定
+}
 
 /*** クロックの初期化 ***/
 
@@ -142,10 +159,12 @@ static void init_peri(void)
     while((in_w(RESETS_RESET_DONE) & (1<<22))==0);
 
     /* 端子設定 */
+#if (USE_PICO_W == 0)       /* オンボードLED初期化(Pico Wを除く) */
     out_w(GPIO_OE_CLR, (1<<25));    /* P25端子出力無効 */
     out_w(GPIO_OUT_CLR, (1<<25));   /* P25端子出力クリア */
     out_w(GPIO_CTRL(25), 5);        /* P25端子 SIO */
     out_w(GPIO_OE_SET, (1<<25));    /* P25出力有効 */
+#endif
 
     out_w(GPIO_CTRL(0), 2);         /* P0端子 UART0-TX */
     out_w(GPIO_CTRL(1), 2);         /* P1端子 UART0-RX */
@@ -191,9 +210,7 @@ void Reset_Handler(void)
     
     DI(intsts);     /* 割込みを無効化 */
 
-    /* PendSVC例外とSysTick例外の優先度設定 */
-    out_w(SCB_SHPR3, (INTLEVEL_0<<24)|(INTLEVEL_3<<16));
-
+    init_int();     /* 割込み・例外の初期化 */
     init_clock();   /* クロックの初期化 */
     init_peri();    /* ペリフェラルの有効化 */
     init_section(); /* メモリの初期化 */

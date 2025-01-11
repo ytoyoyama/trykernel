@@ -1,4 +1,8 @@
-﻿#include <trykernel.h>
+﻿/* 
+ *** Try Kernel v2  デバイスドライバ管理
+*/
+
+#include <trykernel.h>
 #include "device.h"
 
 /* 文字列の比較 */

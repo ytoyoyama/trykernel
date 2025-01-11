@@ -1,4 +1,8 @@
-﻿#ifndef DEV_I2C_H
+﻿/* 
+ *** Try Kernel v2  I2C デバイスドライバ
+*/
+
+#ifndef DEV_I2C_H
 #define DEV_I2C_H
 
 extern ER dev_i2c_open(UW unit, UINT omode);

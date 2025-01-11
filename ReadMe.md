@@ -3,40 +3,31 @@
 ## 概要
 
 Try Kernelはマイコン用の超軽量リアルタイムOSです。リアルタイムOSの極々基本的な機能のみを提供します。
-Try Kernelは、CQ出版(株) Interface 2023年7月号の特集「ゼロから作るOS」に向けて作成し、このリポジトリでメンテしています。
-なお、前述の記事の配布プログラムは以下から入手できます。
+Try Kernelは、CQ出版(株) **Interface 2023年7月号の特集「ゼロから作るOS」** に向けて作成し、このリポジトリでメンテしています。
+この記事の配布プログラムは以下から入手できます。
 
 <https://github.com/ytoyoyama/interface_trykernel>
 
-## 対象H/W・開発環境など
+CQ出版(株) **Interface 2024年11月号の特集「ゼロから作るマルチコアOS」** で、Try Kernel 2 にバージョンアップしました。  
 
-- RaspberryPy Pico
-- Eclipse IDE for Embedded C/C++ Developers
+この記事の配布プログラムは以下から入手できます。  
+
+<https://github.com/ytoyoyama/interface_trykernel_2>
+
+サンプルのアプリケーションは各配布プログラムを参照ください。
+
+## 対象H/W・開発ツールなど
+
+- RaspberryPy Pico , Pico W
 - GNU Arm Embedded GCC
 
-## Linux環境でのビルド (CMake)
+## ビルド方法
+対象H/W向けに全ソースコードをコンパイル、リンクしてください。  
+以下の各開発環境については、それぞれのブランチを参照してください。  
 
-[build_cmakeブランチ](https://github.com/ytoyoyama/trykernel/tree/build_cmake)で、CMakeおよびGCCでのLinux環境上でのビルドが、以下の手順で可能です。
-
-ビルドに必要なパッケージを以下のコマンドでインストールする。
-
-```
-sudo apt install -y cmake gcc-arm-none-eabi gdb-multiarch
-```
-
-その後、本リポジトリをcloneしたディレクトリで以下のコマンドを実行する。
-
-```
-mkdir -p build; cd $_
-cmake ..
-make -j`nproc`
-```
-
-ビルドに成功すれば、 `build/try-kernel` にELF形式のバイナリが出力されるので、pico-toolなどで書き込む。
-
-```
-pico-tool load -x -t elf try-kernel
-```
+- Eclipse Embedded CDTの場合 [project_eclipse](https://github.com/ytoyoyama/trykernel/tree/build_make)
+- CMakeの場合  [build_cmake](https://github.com/ytoyoyama/trykernel/tree/build_cmake)
+- Makeの場合   [build_make](https://github.com/ytoyoyama/trykernel/tree/build_make)
 
 ## ライセンスについて
 

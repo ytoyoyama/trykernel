@@ -2,8 +2,7 @@
 #ifndef KNLDEF_H
 #define KNLDEF_H
 /*
- * Try Kernel
- *      カーネル内部共通定義
+ *** Try Kernel v2  カーネル内部共通定義
  */
 
 /* タスク状態 */
@@ -21,6 +20,8 @@ typedef enum {
     TWFCT_SLP   = 2,    // tk_slp_tskによる起床待ち
     TWFCT_FLG   = 3,    // tk_wai_flgによるフラグ待ち
     TWFCT_SEM   = 4,    // tk_wai_semによる資源待ち
+    TWFCT_MBFS  = 5,    // tk_snd_mbfによる送信待ち
+    TWFCT_MBFR  = 6,    // tk_rcv_mbfによる受信待ち
 } TWFCT;
 
 /* TCB(Task Control Block)定義 */
@@ -52,6 +53,10 @@ typedef struct st_tcb {
 
     /* セマフォ待ち情報 */
     INT     waisem;             // セマフォ資源要求数
+
+    /* メッセージバッファ待ち情報 */
+    INT             msgsz;      // メッセージのサイズ
+    const void      *msg;       // メッセージを格納する領域
 } TCB;
 
 extern TCB	tcb_tbl[];          // TCBテーブル
@@ -100,6 +105,23 @@ typedef struct semaphore_control_block {
     INT     semcnt;     // セマフォ値
     INT     maxsem;     // セマフォ最大値
 } SEMCB;
+
+/* メッセージバッファ管理情報(MBFCB) */
+typedef struct st_mbfcb {
+    KSSTAT  state;          // メッセージバッファ状態
+    SZ      bufsz;          // メッセージバッファのサイズ
+    INT     maxmsz;         // メッセージの最大サイズ
+    void    *bufptr;        // メッセージバッファ領域のアドレス
+
+    SZ      freesz;         // バッファ・サイズ
+    void    *buf_rp;        // 読み込み位置
+    void    *buf_wp;        // 書き込み位置
+} MBFCB;
+
+/* 例外・割込み関連 */
+extern void (* const vector_tbl[])();           // 例外・割込みベクタテーブル
+extern void (*knl_vec_tbl[])();                 // 例外・割込みベクタテーブル
+extern void Default_Handler(void);              // デフォルトハンドラ
 
 /* OSメイン関数 */
 extern int main(void);

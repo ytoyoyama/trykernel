@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      システムライブラリ 
+ *** Try Kernel v2  システムライブラリ 
 */
 #include <trykernel.h>
 #include <knldef.h>

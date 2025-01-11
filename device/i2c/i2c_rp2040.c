@@ -1,4 +1,8 @@
-﻿#include <trykernel.h>
+﻿/* 
+ *** Try Kernel v2  I2C デバイスドライバ
+*/
+
+#include <trykernel.h>
 #include "dev_i2c.h"
 #include "i2c_sysdep.h"
 

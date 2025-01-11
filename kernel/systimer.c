@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      システムタイマ
+ *** Try Kernel v2  システムタイマ
 */
 
 #include <trykernel.h>

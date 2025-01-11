@@ -3,6 +3,8 @@ ENTRY(Reset_Handler)
 MEMORY {
     ROM (rx)	: ORIGIN = 0x10000000, LENGTH = 2048K
     RAM (xrw)	: ORIGIN = 0x20000000, LENGTH = 256K
+    RAM4 (rw)   : ORIGIN = 0x2003E000, LENGTH = 4K
+    RAM5 (rw)   : ORIGIN = 0x2003F000, LENGTH = 4K
 }
 
 SECTIONS {
@@ -56,5 +58,10 @@ SECTIONS {
         __bss_end = .;
         __end = .;
         end = .;
+        _sbrk = .;
     } >RAM
+    
+    .vec0 (NOLOAD) : {
+            *(.vector_ram)
+    } >RAM4
 }

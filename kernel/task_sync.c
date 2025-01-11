@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      タスク付属同期機能
+ *** Try Kernel v2  タスク付属同期機能
 */
 
 #include <trykernel.h>

@@ -1,6 +1,5 @@
 ﻿/* 
- *** Try Kernel
- *      コンテキスト管理
+ *** Try Kernel v2  コンテキスト管理
 */
 
 #include <typedef.h>
