@@ -25,7 +25,7 @@ CQ出版(株) **Interface 2024年11月号の特集「ゼロから作るマルチ
 対象H/W向けに全ソースコードをコンパイル、リンクしてください。  
 以下の各開発環境については、それぞれのブランチを参照してください。  
 
-- Eclipse Embedded CDTの場合 [project_eclipse](https://github.com/ytoyoyama/trykernel/tree/build_make)
+- Eclipse Embedded CDTの場合 [project_eclipse](https://github.com/ytoyoyama/trykernel/tree/project_eclipse)
 - CMakeの場合  [build_cmake](https://github.com/ytoyoyama/trykernel/tree/build_cmake)
 - Makeの場合   [build_make](https://github.com/ytoyoyama/trykernel/tree/build_make)
 
